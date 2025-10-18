@@ -1,3 +1,4 @@
+// src/components/user-login.tsx
 import axios from "axios";
 import { useFormik } from "formik";
 import { useCookies } from "react-cookie";
@@ -11,14 +12,18 @@ export function UserLogin() {
   const formik = useFormik({
     initialValues: { user_id: "", password: "" },
     onSubmit: (values) => {
+      // POST to /api/user/login (server expects user_id or email + password)
       axios.post(`${API_BASE_URL}/api/user/login`, values).then((res) => {
         if (res.data?.success) {
-          setCookie("userid", res.data.userid);
+          setCookie("userid", res.data.userid, { path: "/" });
           navigate("/user-dashboard");
         } else {
           alert("Invalid credentials");
         }
-      }).catch(() => alert("Login failed"));
+      }).catch((err) => {
+        console.error("Login request failed:", err);
+        alert("Login failed");
+      });
     },
   });
 
