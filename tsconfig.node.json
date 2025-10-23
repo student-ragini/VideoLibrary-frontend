@@ -2,17 +2,14 @@
   "compilerOptions": {
     "composite": true,
     "target": "ESNext",
-    "lib": ["ESNext"],
     "module": "ESNext",
-    "skipLibCheck": true,
-
-    /* Node setup */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
-    "esModuleInterop": true,
     "resolveJsonModule": true,
-    "noEmit": true
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "types": ["node"]
   },
-  "include": ["vite.config.ts"],
-  "exclude": ["node_modules"]
+  "include": ["vite.config.ts"]
 }
